@@ -13,6 +13,17 @@ This application simulates the control of an airplane on a 2D canvas, where user
 1. Ensure that the `airplane.png` image file is in the same directory as the HTML and JavaScript files.
 2. Open the `index.html` file in a web browser to start the application.
 
+
+### How to Launch the App
+
+1. Ensure that you have the files `index.html`, `app.js`, `styles.css`, and `airplane.png` all located in the same directory.
+2. Open the directory containing the files.
+3. Double-click `index.html` to open it in your default web browser, or right-click the file, select **Open with**, and choose your preferred browser.
+
+Alternatively:
+- Drag and drop `index.html` directly into an open browser window.
+
+
 ## Controls
 
 - **Yaw Angle**:  
