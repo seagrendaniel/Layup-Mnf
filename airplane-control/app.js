@@ -40,25 +40,38 @@ function updateDisplay() {
 function increaseYaw() {
     yawAngle = Math.min(180, yawAngle + 5); // Limit to 180 degrees upward
     updateDisplay();
-    drawAirplane();
+    drawAirplane(); // Redraw to reflect yaw change immediately
 }
 
 function decreaseYaw() {
     yawAngle = Math.max(-180, yawAngle - 5); // Limit to -180 degrees downward
     updateDisplay();
-    drawAirplane();
+    drawAirplane(); // Redraw to reflect yaw change immediately
 }
 
-// Increase/decrease speed functions
+// Debounce function to limit the rate of function calls
+function debounce(func, delay) {
+    let debounceTimer;
+    return function(...args) {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => func.apply(this, args), delay);
+    };
+}
+
+// Increase/decrease speed
 function increaseSpeed() {
-    airspeed += 10;
+    airspeed += 2;
     updateDisplay();
 }
 
 function decreaseSpeed() {
-    airspeed = Math.max(0, airspeed - 15); // Prevent negative speed
+    airspeed = Math.max(0, airspeed - 2); // Prevent negative speed
     updateDisplay();
 }
+
+// Apply debounce to speed functions with a 200ms delay
+const debouncedIncreaseSpeed = debounce(increaseSpeed, 200);
+const debouncedDecreaseSpeed = debounce(decreaseSpeed, 200);
 
 // Start/stop the animation
 function toggleStartStop() {
@@ -73,17 +86,18 @@ function resetCanvas() {
     isFlying = false;
     document.querySelector("button[onclick='toggleStartStop()']").textContent = "Start";
 
-    // Reset position, yaw, speed, and flight path to initial values
+    // Reset all properties to their initial values
     airplaneX = initialX;
     airplaneY = initialY;
     yawAngle = initialYaw;
     airspeed = initialSpeed;
     flightPath = [{ x: 0, y: initialY }]; // Restart flight path at the exact left edge
 
-    // Update displays
+    // Update displays to initial values
     updateDisplay();
 
-    // Redraw the canvas to the initial state
+    // Clear the canvas and redraw the airplane at the starting position
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawAirplane();
 }
 
@@ -96,12 +110,11 @@ function updatePosition() {
     airplaneX += dx;
     airplaneY += dy;
 
-    // Check for canvas boundaries; reset airplane position and yaw if crossing
+    // Check for canvas boundaries; reset airplane position if crossing
     if (airplaneX > canvas.width || airplaneY < 0 || airplaneY > canvas.height) {
         airplaneX = 0; // Reset to the exact left edge of the canvas
         airplaneY = initialY; // Reset to center vertically
-        yawAngle = initialYaw; // Reset yaw angle to 0
-        flightPath = [{ x: 0, y: airplaneY }]; // Restart flight path from the exact left edge
+        flightPath = [{ x: 0, y: airplaneY }]; // Restart flight path at exact left edge
         return;
     }
 
