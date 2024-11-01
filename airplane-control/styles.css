@@ -1,0 +1,92 @@
+/* General styling */
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f0f4f8;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+/* Title styling */
+h1 {
+  font-size: 2vw;
+  color: #333;
+  margin: 20px 0;
+  text-align: center;
+}
+
+/* Controls styling */
+#controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 1.2vw; /* Make font size responsive */
+}
+
+/* Button styling */
+button {
+  font-family: 'Roboto', Arial, sans-serif;
+  font-size: 1rem;
+  background-color: #1e88e5;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #1565c0;
+}
+
+button:active {
+  background-color: #0d47a1;
+}
+
+/* Display for yaw and speed values */
+span {
+  font-size: 1rem;
+  color: #333;
+  width: 40px;
+  text-align: center;
+}
+
+/* Canvas styling */
+canvas {
+  background-color: #87ceeb; /* Sky blue background */
+  border: 2px solid #1e88e5; /* Border for a framed look */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  width: 90vw; /* Set canvas width to 90% of the viewport width */
+  height: 70vh; /* Set canvas height to 70% of the viewport height */
+  max-width: 1600px;
+  max-height: 750px;
+}
+
+@media (max-width: 768px) {
+  h1 {
+      font-size: 4vw;
+  }
+  
+  #controls {
+      font-size: 2.5vw;
+      gap: 5px;
+  }
+
+  button {
+      padding: 6px 10px;
+      font-size: 0.8rem;
+  }
+
+  canvas {
+      width: 95vw;
+      height: 60vh;
+  }
+}

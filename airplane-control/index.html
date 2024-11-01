@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airplane Flight Path Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Airplane Flight Path Simulator</h1>
+    <div id="controls">
+      <label>Yaw Angle (degrees): </label>
+      <button onclick="decreaseYaw()">-</button>
+      <span id="yawDisplay">0</span>
+      <button onclick="increaseYaw()">+</button>
+  
+      <label>Airspeed (knots): </label>
+      <button onclick="decreaseSpeed()">-</button>
+      <span id="speedDisplay">40</span>
+      <button onclick="increaseSpeed()">+</button>
+  
+      <button onclick="toggleStartStop()">Start</button>
+      
+      <!-- New Reset Button -->
+      <button onclick="resetCanvas()">Reset</button>
+  </div>
+  
+    <canvas id="flightCanvas" width="800" height="600"></canvas>
+
+    <script src="app.js"></script>
+</body>
+</html>
